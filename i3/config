@@ -218,10 +218,16 @@ client.background        $base
 #        status_command i3status
 #}
 
+# Hide the title bar
+default_border pixel 0
+default_floating_border pixel 0
+
 bindsym Ctrl+Shift+Print exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
 
 # Start polybar
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+
+exec_always --no-startup-id autotiling
 
 exec_always --no-startup-id feh --bg-scale $HOME/Pictures/desert.jpg
 exec_always --no-startup-id xrandr --output DVI-I-0 --mode 1920x1080 --pos 0x180 --rotate normal --output DVI-I-1 --off --output HDMI-0 --mode 1920x1080 --pos 4480x180 --rotate normal --output DP-0 --primary --mode 2560x1440 --rate 75 --pos 1920x0 --rotate normal --output DP-1 --off --output DVI-D-0 --off
