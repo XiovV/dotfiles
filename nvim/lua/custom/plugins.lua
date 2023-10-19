@@ -1,7 +1,7 @@
 local plugins = {
   {
     "jose-elias-alvarez/null-ls.nvim",
-    ft = {"python"},
+    ft = {"python", "go", "tsx"},
     opts = function()
       return require "custom.configs.null-ls"
     end,
@@ -10,6 +10,8 @@ local plugins = {
     "williamboman/mason.nvim",
     opts = {
       ensure_installed = {
+        "gopls",
+        "goimports",
         "black",
         "mypy",
         "ruff",
@@ -22,6 +24,16 @@ local plugins = {
     config = function ()
       require "plugins.configs.lspconfig"
       require "custom.configs.lspconfig"
+    end,
+  },
+  {
+    "olexsmir/gopher.nvim",
+    ft = "go",
+    config = function (_, opts)
+      require("gopher").setup(opts)
+    end,
+    build = function()
+      vim.cmd [[silent! GoInstallDeps]]
     end,
   },
   {
