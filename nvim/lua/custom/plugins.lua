@@ -1,7 +1,8 @@
 local plugins = {
   {
-    "jose-elias-alvarez/null-ls.nvim",
-    ft = {"python", "go", "tsx"},
+    "nvimtools/none-ls.nvim",
+    event = "VeryLazy",
+    ft = {"python", "go", "js", "ts", "jsx", "tsx"},
     opts = function()
       return require "custom.configs.null-ls"
     end,
@@ -10,6 +11,11 @@ local plugins = {
     "williamboman/mason.nvim",
     opts = {
       ensure_installed = {
+        "prettierd",
+        "eslint-lsp",
+        "tailwindcss-language-server",
+        "typescript-language-server",
+        "vue-language-server",
         "gopls",
         "goimports",
         "black",
@@ -18,6 +24,34 @@ local plugins = {
         "pyright",
       },
     },
+  },
+  {
+    "windwp/nvim-ts-autotag",
+    ft = {
+      "javascript",
+      "javascriptreact",
+      "typescript",
+      "typescriptreact",
+    },
+    config = function()
+      require("nvim-ts-autotag").setup()
+    end
+  },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = function()
+      opts = require "plugins.configs.treesitter"
+      opts.ensure_installed = {
+        "lua",
+        "javascript",
+        "typescript",
+        "tsx",
+        "vue",
+        "go",
+        "python",
+      }
+      return opts
+    end
   },
   {
     "neovim/nvim-lspconfig",
