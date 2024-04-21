@@ -47,6 +47,10 @@ bindsym $mod+Return exec kitty
 # kill focused window
 bindsym $mod+Shift+q kill
 
+# Volume control
+bindsym $mod+comma exec amixer set Master -q 5%-
+bindsym $mod+period exec amixer set Master -q 5%+
+
 # start rofi (a program launcher)
 bindsym $mod+d exec rofi -show drun
 # There also is the (new) i3-dmenu-desktop which only displays applications
